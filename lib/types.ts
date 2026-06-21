@@ -19,7 +19,13 @@ export interface Difficulty {
 export type PuzzleKind = "text" | "code" | "choice" | "minigame";
 
 /** Tipos de minijuego interactivo disponibles */
-export type MinigameType = "lock" | "wires" | "memory" | "tune";
+export type MinigameType =
+  | "lock"
+  | "wires"
+  | "memory"
+  | "tune"
+  | "slide"
+  | "maze";
 
 export interface LockConfig {
   type: "lock";
@@ -61,11 +67,27 @@ export interface TuneConfig {
   clue: string;
 }
 
+export interface SlideConfig {
+  type: "slide";
+  /** Lado del tablero (3 = puzzle 3x3 / taquín de 8 piezas) */
+  size: number;
+  clue: string;
+}
+
+export interface MazeConfig {
+  type: "maze";
+  cols: number;
+  rows: number;
+  clue: string;
+}
+
 export type MinigameConfig =
   | LockConfig
   | WiresConfig
   | MemoryConfig
-  | TuneConfig;
+  | TuneConfig
+  | SlideConfig
+  | MazeConfig;
 
 export interface Puzzle {
   id: string;

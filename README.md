@@ -22,9 +22,24 @@ pistas disponibles.
 
 | Nivel | Enigmas | Tiempo | Pistas | Respuestas |
 |-------|---------|--------|--------|------------|
-| 🏖️ Explorador | 3 | 15 min | 3 por enigma | Flexibles |
-| 🌅 Náufrago | 4 | 12 min | 2 por enigma | Flexibles |
-| ⛈️ Superviviente | 5 | 10 min | 1 por enigma | Exactas |
+| 🏖️ Explorador | 4 | 15 min | 3 por enigma | Flexibles |
+| 🌅 Náufrago | 5 | 14 min | 2 por enigma | Flexibles |
+| ⛈️ Superviviente | 6 | 12 min | 1 por enigma | Exactas |
+
+## Minijuegos interactivos
+
+Muchos enigmas no se resuelven escribiendo, sino jugando. Tipos disponibles:
+
+- 🔒 **Cerradura de dial** — gira las ruedas hasta la combinación correcta
+- 🔌 **Conectar cables** — une cada cable/sistema con su destino
+- 🧠 **Secuencia de memoria** (tipo Simon) — repite la secuencia que se ilumina
+- 📻 **Sintonizador** — desliza hasta fijar la señal/valor correcto
+- 🧩 **Puzzle de piezas** (taquín) — desliza las fichas hasta recomponer el mapa
+- 🌀 **Laberinto** — llega a la salida con las flechas, WASD o los botones
+
+Los minijuegos se mezclan con los enigmas de texto y están repartidos para que
+aparezca al menos uno en cualquier nivel. Las secuencias, laberintos y puzzles
+se generan al azar en cada partida.
 
 ## Stack
 

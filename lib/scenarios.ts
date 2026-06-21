@@ -59,6 +59,28 @@ export const SCENARIOS: Scenario[] = [
         icon: "🍾",
       },
       {
+        id: "n-slide",
+        title: "El mapa roto",
+        scene:
+          "Dentro de la botella, junto a la nota, viajaba un mapa de la isla partido en pedazos que se han desordenado. Recompónlo deslizando las piezas para descubrir dónde se alza el faro.",
+        riddle: "Desliza las piezas hasta ordenar el mapa (del 1 al 8).",
+        kind: "minigame",
+        answers: [],
+        minigame: {
+          type: "slide",
+          size: 3,
+          clue: "Mueve las piezas contiguas al hueco hasta dejarlas en orden.",
+        },
+        hints: [
+          "Resuelve por filas: coloca primero el 1, 2 y 3 arriba.",
+          "Cuando una fila esté bien, intenta no volver a tocarla.",
+          "Deja el hueco abajo a la derecha para el final.",
+        ],
+        success:
+          "Las piezas encajan y el mapa revela el camino hasta el faro del promontorio.",
+        icon: "🗺️",
+      },
+      {
         id: "n3",
         title: "La cerradura del faro",
         scene:
@@ -198,6 +220,29 @@ export const SCENARIOS: Scenario[] = [
         icon: "🔌",
       },
       {
+        id: "a-maze",
+        title: "El laberinto de dunas",
+        scene:
+          "La antena de la cola salió despedida y quedó tras un campo de dunas y chatarra retorcida que forma un auténtico laberinto. Sin ella la radio no alcanzará a nadie: ve a por ella.",
+        riddle: "Atraviesa el laberinto hasta la 🏁 para recuperar la antena.",
+        kind: "minigame",
+        answers: [],
+        minigame: {
+          type: "maze",
+          cols: 8,
+          rows: 8,
+          clue: "Desde la esquina superior izquierda, llega hasta la bandera.",
+        },
+        hints: [
+          "Si un pasillo no tiene salida, retrocede y prueba otro.",
+          "Truco clásico: sigue siempre la pared de tu derecha.",
+          "Tiende a avanzar hacia abajo y a la derecha.",
+        ],
+        success:
+          "Sales del laberinto de chatarra con la antena en la mano. La señal será mucho más potente.",
+        icon: "🏜️",
+      },
+      {
         id: "a3",
         title: "La frecuencia de emergencia",
         scene:
@@ -322,6 +367,28 @@ export const SCENARIOS: Scenario[] = [
         success:
           "Hacia el Este, donde el mapa marca tierra habitada. El rumbo es bueno.",
         icon: "🧭",
+      },
+      {
+        id: "g-slide",
+        title: "La carta de navegación",
+        scene:
+          "La carta de vuelo se rasgó en pedazos al caer. Recomponla deslizando las piezas para entender por dónde sopla la corriente que te llevará a tierra firme.",
+        riddle: "Ordena las piezas de la carta (del 1 al 8).",
+        kind: "minigame",
+        answers: [],
+        minigame: {
+          type: "slide",
+          size: 3,
+          clue: "Desliza las piezas contiguas al hueco hasta ordenarlas.",
+        },
+        hints: [
+          "Empieza por la primera fila: 1, 2, 3.",
+          "Ve resolviendo fila a fila de arriba abajo.",
+          "El hueco debe acabar abajo a la derecha.",
+        ],
+        success:
+          "La carta queda completa: ahora ves clara la ruta de vientos hacia tierra firme.",
+        icon: "🗺️",
       },
       {
         id: "g3",
@@ -451,6 +518,29 @@ export const SCENARIOS: Scenario[] = [
         icon: "🔢",
       },
       {
+        id: "b-maze",
+        title: "La cueva submarina",
+        scene:
+          "Tras la escotilla se abre una red de galerías inundadas. Con el aire justo, debes encontrar la salida que lleva a la sala de máquinas sin perderte en la oscuridad.",
+        riddle: "Encuentra la salida de la cueva hasta la 🏁.",
+        kind: "minigame",
+        answers: [],
+        minigame: {
+          type: "maze",
+          cols: 9,
+          rows: 9,
+          clue: "Nada desde la entrada (arriba) hasta la salida (abajo a la derecha).",
+        },
+        hints: [
+          "No malgastes aire: si llegas a un fondo, vuelve atrás.",
+          "Sigue una pared de forma constante para no dar vueltas.",
+          "El destino está en la esquina opuesta a la entrada.",
+        ],
+        success:
+          "Emerges en una bolsa de aire justo en la sala de máquinas. Lo lograste.",
+        icon: "🕳️",
+      },
+      {
         id: "b3",
         title: "El habitante de la cala",
         scene:
@@ -575,6 +665,29 @@ export const SCENARIOS: Scenario[] = [
         success:
           "«EL ECO». La voz ríe, satisfecha, y las runas del arco se vuelven tangibles bajo tus dedos.",
         icon: "👁️",
+      },
+      {
+        id: "p-maze",
+        title: "El laberinto de la selva",
+        scene:
+          "La maleza alrededor del arco se ha cerrado formando un laberinto vegetal. El guardián no reabrirá nada hasta que demuestres que sabes moverte por su dominio.",
+        riddle: "Atraviesa la selva hasta la 🏁.",
+        kind: "minigame",
+        answers: [],
+        minigame: {
+          type: "maze",
+          cols: 8,
+          rows: 8,
+          clue: "Avanza desde la entrada hasta el corazón de la selva (la bandera).",
+        },
+        hints: [
+          "Si te topas con un callejón sin salida, retrocede.",
+          "Sigue siempre la misma pared para no perderte.",
+          "El claro está en la esquina inferior derecha.",
+        ],
+        success:
+          "Sales a un claro y el arco de runas se alza ante ti, más cerca que nunca.",
+        icon: "🌿",
       },
       {
         id: "p3",

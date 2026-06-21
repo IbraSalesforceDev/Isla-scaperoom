@@ -5,6 +5,8 @@ import LockDial from "./LockDial";
 import WireConnect from "./WireConnect";
 import MemorySequence from "./MemorySequence";
 import TuneSlider from "./TuneSlider";
+import SlidePuzzle from "./SlidePuzzle";
+import Maze from "./Maze";
 
 export default function Minigame({
   config,
@@ -22,6 +24,10 @@ export default function Minigame({
       return <MemorySequence config={config} onSolve={onSolve} />;
     case "tune":
       return <TuneSlider config={config} onSolve={onSolve} />;
+    case "slide":
+      return <SlidePuzzle config={config} onSolve={onSolve} />;
+    case "maze":
+      return <Maze config={config} onSolve={onSolve} />;
     default:
       return null;
   }
