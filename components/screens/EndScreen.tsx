@@ -86,7 +86,7 @@ export default function EndScreen({
             </button>
           </div>
           <p className="mt-4 text-xs text-ocean-100/55">
-            Cada partida elige una historia distinta entre 5 posibles. ¿Las
+            Cada partida elige una historia distinta entre 8 posibles. ¿Las
             descubrirás todas?
           </p>
         </div>

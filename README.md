@@ -3,7 +3,7 @@
 Juego de escape room interactivo: **apareces en una isla, no sabes cómo has
 llegado y la única forma de salir es averiguar cómo lo hiciste.**
 
-Cada partida elige al azar **una de 5 historias** distintas sobre cómo acabaste
+Cada partida elige al azar **una de 8 historias** distintas sobre cómo acabaste
 en la isla, así que no hay dos partidas iguales. Antes de empezar eliges entre
 **3 niveles de dificultad** que cambian el número de enigmas, el tiempo y las
 pistas disponibles.
@@ -17,6 +17,9 @@ pistas disponibles.
 | 🎈 El Globo Perdido | Una corriente secuestró tu globo | Reparas el quemador y vuelves a elevarte |
 | 🤿 La Inmersión | Un fallo de aire buceando un pecio | Reactivas el batiscafo y vuelves a la nodriza |
 | 🌀 El Portal Olvidado | Un portal de runas te trajo | Descifras las runas y reabres el portal |
+| 🛳️ El Crucero | Caíste por la borda de noche | Subes al acantilado y atraes a un barco con un espejo de señales |
+| 🏴‍☠️ Abandonado por Piratas | Te dejaron marooned en un islote | Descifras el mapa, desentierras el tesoro y huyes en una chalupa |
+| 🛰️ La Cápsula de Escape | Amerizaste en una cápsula de emergencia | Reinicias los sistemas y activas la baliza vía satélite |
 
 ## Niveles de dificultad
 

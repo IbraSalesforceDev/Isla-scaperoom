@@ -766,6 +766,440 @@ export const SCENARIOS: Scenario[] = [
       },
     ],
   },
+
+  // ─────────────────────────────────────────────────────────────────────────
+  {
+    id: "crucero",
+    title: "El Crucero",
+    arrival:
+      "Era la última noche de fiesta a bordo. Te asomaste a la barandilla de popa para tomar el aire, una ola inesperada golpeó el casco… y de pronto estabas en el agua negra, viendo cómo las luces del crucero se alejaban sin que nadie te oyera. Nadaste hacia una sombra de tierra hasta perder el sentido.",
+    goal: "Sube al punto más alto de la isla, enciende una señal y atrae a un barco que pase por la ruta.",
+    ending:
+      "El destello del espejo encuentra por fin el puente de un mercante en el horizonte. Tres bocinas largas responden: te han visto. Te dejas caer sobre la roca, agotado y a salvo.",
+    icon: "🛳️",
+    gradient: "from-indigo-900 via-ocean-800 to-cyan-600",
+    puzzles: [
+      {
+        id: "c1",
+        title: "Lo que llevabas encima",
+        scene:
+          "Vacías los bolsillos sobre una roca: lo poco que sobrevivió al chapuzón será todo tu equipo de supervivencia. Conviene saber con qué cuentas.",
+        riddle:
+          "Encuentras 3 bengalas y cada una arde durante 120 segundos. ¿Cuántos minutos de señal luminosa tienes en total?",
+        kind: "text",
+        answers: ["6", "seis", "6 minutos", "seis minutos"],
+        hints: [
+          "Primero pasa los segundos de cada bengala a minutos.",
+          "120 segundos son 2 minutos.",
+          "3 bengalas × 2 minutos = …",
+        ],
+        success:
+          "6 minutos de luz. Poca cosa: tendrás que usarlas en el momento justo. Guardas las bengalas y miras hacia arriba.",
+        icon: "🎆",
+      },
+      {
+        id: "c-maze",
+        title: "El ascenso al acantilado",
+        scene:
+          "El mejor punto para hacer una señal es la cima del acantilado, pero la pared está plagada de salientes y callejones sin salida. Tienes que encontrar la vereda que llega arriba.",
+        riddle: "Sube por el acantilado hasta la cima (la 🏁).",
+        kind: "minigame",
+        answers: [],
+        minigame: {
+          type: "maze",
+          cols: 8,
+          rows: 8,
+          clue: "Desde la base (arriba a la izquierda) busca la senda hasta la cima.",
+        },
+        hints: [
+          "Si una repisa no tiene continuación, retrocede.",
+          "Sigue una pared de forma constante para no dar vueltas.",
+          "La cima está en la esquina opuesta a donde empiezas.",
+        ],
+        success:
+          "Llegas jadeando a la cima. Desde aquí se domina todo el horizonte: el sitio perfecto para una señal.",
+        icon: "🧗",
+      },
+      {
+        id: "c-lock",
+        title: "El cofre del bote salvavidas",
+        scene:
+          "Un cofre de emergencia de un bote salvavidas ha encallado en las rocas. Dentro hay un espejo de señales, pero está cerrado con un candado numérico. Una etiqueta da la pista.",
+        riddle:
+          "La etiqueta dice: «código = el triple de 7». Marca ese número en el candado.",
+        kind: "minigame",
+        answers: [],
+        minigame: {
+          type: "lock",
+          digits: 2,
+          code: "21",
+          clue: "El triple de 7 es 7 + 7 + 7.",
+        },
+        hints: [
+          "Triple significa multiplicar por 3.",
+          "7 × 3 = …",
+          "El código es 21.",
+        ],
+        success:
+          "El candado se abre. Dentro, intacto, un espejo de señales pulido. Justo lo que necesitabas.",
+        icon: "🧰",
+      },
+      {
+        id: "c4",
+        title: "El acertijo del vigía",
+        scene:
+          "Grabada en la tapa del cofre hay una adivinanza que dejó algún vigía con tiempo de sobra. Resolverla te recuerda dónde mirar.",
+        riddle:
+          "«Tengo ciudades, pero no casas; montañas, pero no árboles; y agua, pero ni un solo pez. ¿Qué soy?»",
+        kind: "text",
+        answers: ["un mapa", "mapa", "el mapa"],
+        hints: [
+          "Es un objeto plano que cabe doblado en un bolsillo.",
+          "Lo usas para no perderte.",
+          "Es un mapa.",
+        ],
+        success:
+          "«UN MAPA». En el forro del cofre hay justamente uno con las rutas de navegación marcadas: sabrás por dónde pasan los barcos.",
+        icon: "🗺️",
+      },
+      {
+        id: "c5",
+        title: "La hoguera de señales",
+        scene:
+          "Antes de usar el espejo preparas una hoguera de respaldo en la cima. Necesitas leña suficiente para que el humo se vea a kilómetros.",
+        riddle:
+          "Juntas 5 ramas grandes y el doble de ramas pequeñas. ¿Cuántas ramas pequeñas reúnes?",
+        kind: "text",
+        answers: ["10", "diez"],
+        hints: [
+          "El doble significa multiplicar por 2.",
+          "5 × 2 = …",
+          "Son 10 ramas pequeñas.",
+        ],
+        success:
+          "10 ramas pequeñas y 5 grandes: una buena pira lista para arder. Solo falta llamar la atención de un barco.",
+        icon: "🔥",
+      },
+      {
+        id: "c-tune",
+        title: "El espejo de señales",
+        scene:
+          "Un mercante asoma en el horizonte. Tienes una sola oportunidad: inclinar el espejo en el ángulo exacto para que el reflejo del sol golpee su puente y te vean.",
+        riddle:
+          "Orienta el espejo hasta fijar el reflejo sobre el barco: ángulo 60°.",
+        kind: "minigame",
+        answers: [],
+        minigame: {
+          type: "tune",
+          min: 0,
+          max: 90,
+          target: 60,
+          tolerance: 3,
+          step: 1,
+          unit: "°",
+          clue: "Inclina el espejo despacio hasta que la señal se fije sobre el barco.",
+        },
+        hints: [
+          "El barco está alto en el horizonte: necesitas bastante inclinación.",
+          "Acércate a los 60 grados.",
+          "Cuando el medidor se ponga verde, confirma.",
+        ],
+        success:
+          "El haz de luz da de lleno en el puente del mercante.",
+        icon: "🪞",
+      },
+    ],
+  },
+
+  // ─────────────────────────────────────────────────────────────────────────
+  {
+    id: "piratas",
+    title: "Abandonado por Piratas",
+    arrival:
+      "Te acusaron de quedarte con parte del botín. El capitán, sin juicio ni clemencia, te dejó marooned en este islote con una cantimplora medio vacía, una pistola con una sola bala y un trozo de mapa que nadie supo leer. «La ley de la costa», dijeron, antes de izar velas.",
+    goal: "Descifra el mapa, desentierra el tesoro y huye en la chalupa que los contrabandistas esconden en la cueva.",
+    ending:
+      "Empujas la chalupa fuera de la cueva con el cofre a bordo. El islote, que iba a ser tu tumba, se encoge tras la estela. Tendrás tu venganza… pero primero, libertad.",
+    icon: "🏴‍☠️",
+    gradient: "from-amber-900 via-orange-800 to-stone-700",
+    puzzles: [
+      {
+        id: "pi1",
+        title: "El trozo de mapa",
+        scene:
+          "El pedazo de mapa está escrito a la vieja usanza, con cifras romanas que marcan los pasos hasta el tesoro. Tienes que traducirlas para no cavar en el sitio equivocado.",
+        riddle:
+          "El mapa indica avanzar «XV» pasos hacia el peñasco. ¿Cuántos pasos son en números normales?",
+        kind: "text",
+        answers: ["15", "quince"],
+        hints: [
+          "En números romanos, X vale 10 y V vale 5.",
+          "XV = 10 + 5.",
+          "Son 15 pasos.",
+        ],
+        success:
+          "15 pasos. Cuentas desde el peñasco y marcas el punto con un palo. El mapa, sin embargo, sigue roto en pedazos.",
+        icon: "📜",
+      },
+      {
+        id: "pi-slide",
+        title: "El mapa rasgado",
+        scene:
+          "El resto del mapa está hecho jirones. Recolócalo deslizando los fragmentos para ver el dibujo completo de la ubicación del cofre.",
+        riddle: "Ordena los fragmentos del mapa (del 1 al 8).",
+        kind: "minigame",
+        answers: [],
+        minigame: {
+          type: "slide",
+          size: 3,
+          clue: "Desliza los pedazos contiguos al hueco hasta recomponer el mapa.",
+        },
+        hints: [
+          "Coloca primero la fila superior: 1, 2, 3.",
+          "Resuelve fila por fila, de arriba abajo.",
+          "El hueco debe quedar abajo a la derecha.",
+        ],
+        success:
+          "El mapa cobra sentido: una equis bajo la palmera torcida. Ahí está el tesoro.",
+        icon: "🗺️",
+      },
+      {
+        id: "pi3",
+        title: "El guardián de la palmera",
+        scene:
+          "Junto a la palmera torcida, alguien clavó una tabla con una adivinanza tallada a cuchillo. Los piratas eran supersticiosos: mejor responder antes de cavar.",
+        riddle:
+          "«No estoy vivo, pero crezco; no tengo pulmones, pero necesito aire; no tengo boca, pero el agua me mata. ¿Qué soy?»",
+        kind: "text",
+        answers: ["el fuego", "fuego", "la llama", "llama"],
+        hints: [
+          "Da luz y calor.",
+          "Lo apagas echándole agua.",
+          "Es el fuego.",
+        ],
+        success:
+          "«EL FUEGO». La tabla cede y, debajo, la tierra está removida: empiezas a cavar y tu pala golpea madera.",
+        icon: "🔥",
+      },
+      {
+        id: "pi-lock",
+        title: "El cofre del tesoro",
+        scene:
+          "El cofre está cerrado con un candado de tres ruedas. Tallados en la tapa, los toques de campana con que el capitán abría su botín.",
+        riddle:
+          "Los toques de campana fueron: cuatro, luego dos, luego uno. Marca esa combinación.",
+        kind: "minigame",
+        answers: [],
+        minigame: {
+          type: "lock",
+          digits: 3,
+          code: "421",
+          clue: "Cuatro — dos — uno, en ese orden.",
+        },
+        hints: [
+          "Cada rueda es un toque de campana.",
+          "Primero el 4, luego el 2, luego el 1.",
+          "La combinación es 421.",
+        ],
+        success:
+          "El candado se abre con un crujido. Oro, monedas y joyas relucen dentro. Pero aún tienes que salir de la isla.",
+        icon: "💰",
+      },
+      {
+        id: "pi5",
+        title: "El rumbo de la chalupa",
+        scene:
+          "El mapa marca dónde esconden los contrabandistas una chalupa: «hacia donde muere el sol». Necesitas tener clara la dirección antes de cargar con el cofre.",
+        riddle:
+          "Si la chalupa está «hacia donde muere el sol», ¿en qué punto cardinal debes buscarla?",
+        kind: "text",
+        answers: ["oeste", "el oeste", "occidente", "o", "poniente"],
+        hints: [
+          "El sol nace por un lado y se pone por el contrario.",
+          "Sale por el Este…",
+          "…y se pone por el Oeste.",
+        ],
+        success:
+          "Al Oeste. Arrastras el cofre hacia la costa de poniente, donde una boca de cueva se abre entre las rocas.",
+        icon: "🧭",
+      },
+      {
+        id: "pi-maze",
+        title: "La cueva del contrabandista",
+        scene:
+          "La cueva es un dédalo de galerías excavadas para despistar a la autoridad. En algún rincón aguarda la chalupa. Con la marea subiendo, no puedes permitirte perderte.",
+        riddle: "Encuentra la chalupa al fondo de la cueva (la 🏁).",
+        kind: "minigame",
+        answers: [],
+        minigame: {
+          type: "maze",
+          cols: 9,
+          rows: 9,
+          clue: "Avanza desde la entrada hasta la chalupa, en el extremo opuesto.",
+        },
+        hints: [
+          "Los callejones sin salida son trampas: retrocede.",
+          "Sigue siempre la misma pared para no repetir camino.",
+          "La salida con la chalupa está abajo a la derecha.",
+        ],
+        success:
+          "Al fondo, a flote en una poza, una chalupa con remos.",
+        icon: "🛶",
+      },
+    ],
+  },
+
+  // ─────────────────────────────────────────────────────────────────────────
+  {
+    id: "capsula",
+    title: "La Cápsula de Escape",
+    arrival:
+      "La estación oceanográfica flotante se inundaba y las alarmas aullaban. Apenas tuviste tiempo de meterte en una cápsula de escape antes de que todo se fuera al fondo. La cápsula amerizó dando tumbos y la corriente te varó en esta isla. Ahora yace medio inundada en la arena, con la electrónica chisporroteando.",
+    goal: "Achica la cápsula, reinicia sus sistemas y reactiva la baliza para enviar tu posición al satélite de rescate.",
+    ending:
+      "La baliza emite un pitido firme y un LED verde confirma: posición enviada al satélite. En cuestión de horas alguien sabrá exactamente dónde estás. Te recuestas en la cápsula y, por primera vez, respiras tranquilo.",
+    icon: "🛰️",
+    gradient: "from-slate-950 via-cyan-900 to-emerald-700",
+    puzzles: [
+      {
+        id: "ca1",
+        title: "El registro de la cápsula",
+        scene:
+          "La pantalla de diagnóstico aún funciona a ratos. Antes de nada conviene saber cuánta autonomía te queda para no quedarte a oscuras a mitad de la reparación.",
+        riddle:
+          "La batería está al 80 % y pierde un 5 % cada hora. ¿Cuántas horas tardará en quedarse a 0 %?",
+        kind: "text",
+        answers: ["16", "dieciseis", "dieciséis", "16 horas"],
+        hints: [
+          "Tienes que ver cuántas veces cabe el 5 en el 80.",
+          "Es una división: 80 ÷ 5.",
+          "80 ÷ 5 = …",
+        ],
+        success:
+          "16 horas de margen. Tiempo suficiente si no te entretienes. Te pones manos a la obra.",
+        icon: "🔋",
+      },
+      {
+        id: "ca-wires",
+        title: "El panel quemado",
+        scene:
+          "El cortocircuito ha soltado los conectores principales del panel. Cada módulo debe volver a su toma correcta o nada arrancará.",
+        riddle: "Reconecta cada módulo de la cápsula con su toma correcta.",
+        kind: "minigame",
+        answers: [],
+        minigame: {
+          type: "wires",
+          clue: "Pulsa un módulo y luego su toma. El color te guía.",
+          pairs: [
+            { left: "Batería", right: "Bus de energía", color: "#84cc16" },
+            { left: "Antena", right: "Transmisor", color: "#3b82f6" },
+            { left: "Bomba", right: "Achique", color: "#06b6d4" },
+            { left: "GPS", right: "Procesador", color: "#f59e0b" },
+          ],
+        },
+        hints: [
+          "La batería alimenta el bus de energía.",
+          "La antena va al transmisor; la bomba, al achique.",
+          "El GPS se conecta al procesador.",
+        ],
+        success:
+          "Los conectores encajan y el panel se ilumina con un parpadeo esperanzador. Hay corriente.",
+        icon: "🔌",
+      },
+      {
+        id: "ca3",
+        title: "La clave del sistema",
+        scene:
+          "El sistema operativo pide una clave de desbloqueo. El manual de a bordo la oculta tras una adivinanza, por seguridad.",
+        riddle:
+          "«Viajo por todo el mundo y, sin embargo, siempre me quedo en una esquina. ¿Qué soy?»",
+        kind: "text",
+        answers: ["un sello", "sello", "el sello", "un sello de correos"],
+        hints: [
+          "Va pegado a las cartas.",
+          "Se queda en la esquina del sobre.",
+          "Es un sello (de correos).",
+        ],
+        success:
+          "«UN SELLO». El sistema acepta la clave y arranca el módulo de comunicaciones.",
+        icon: "🧩",
+      },
+      {
+        id: "ca-memory",
+        title: "La secuencia de arranque",
+        scene:
+          "Antes de transmitir, la cápsula ejecuta una secuencia de encendido: una cadena de pulsos que debes confirmar repitiéndola en el panel táctil.",
+        riddle: "Memoriza la secuencia de arranque y repítela.",
+        kind: "minigame",
+        answers: [],
+        minigame: {
+          type: "memory",
+          length: 5,
+          clue: "Observa el orden en que parpadean los módulos y reprodúcelo.",
+          pads: [
+            { symbol: "◉", color: "#22d3ee" },
+            { symbol: "◉", color: "#a3e635" },
+            { symbol: "◉", color: "#f472b6" },
+            { symbol: "◉", color: "#fbbf24" },
+          ],
+        },
+        hints: [
+          "Mira la secuencia completa antes de tocar.",
+          "Puedes volver a verla si fallas.",
+          "Repite los colores en el mismo orden.",
+        ],
+        success:
+          "La secuencia se valida y la cápsula entra en modo de transmisión.",
+        icon: "🧠",
+      },
+      {
+        id: "ca5",
+        title: "El intervalo de la baliza",
+        scene:
+          "La baliza no transmite en continuo para ahorrar energía: lanza pulsos espaciados. El satélite necesita varios para fijar tu posición.",
+        riddle:
+          "La baliza emite una señal cada 30 segundos. ¿Cuántas señales lanza en 5 minutos?",
+        kind: "text",
+        answers: ["10", "diez", "10 señales"],
+        hints: [
+          "Pasa los 5 minutos a segundos: 5 × 60 = 300.",
+          "Divide 300 entre 30.",
+          "300 ÷ 30 = …",
+        ],
+        success:
+          "10 señales en cinco minutos: de sobra para que el satélite te localice. Solo falta apuntar la antena.",
+        icon: "📶",
+      },
+      {
+        id: "ca-tune",
+        title: "Enlace con el satélite",
+        scene:
+          "El satélite meteorológico que hará de puente pasa ahora mismo sobre ti. Debes sintonizar la antena en su frecuencia exacta antes de que se aleje.",
+        riddle:
+          "Sintoniza la antena en la frecuencia del satélite: 137.5 MHz.",
+        kind: "minigame",
+        answers: [],
+        minigame: {
+          type: "tune",
+          min: 130,
+          max: 145,
+          target: 137.5,
+          tolerance: 0.3,
+          step: 0.1,
+          unit: "MHz",
+          clue: "Desliza con cuidado hasta 137.5 MHz y mantén el enlace fijado.",
+        },
+        hints: [
+          "Los satélites meteorológicos emiten cerca de 137 MHz.",
+          "Acércate a 137 y afina al medio.",
+          "El valor exacto es 137.5 MHz.",
+        ],
+        success:
+          "La señal engancha el satélite con un pitido limpio.",
+        icon: "🛰️",
+      },
+    ],
+  },
 ];
 
 export function pickRandomScenario(excludeId?: string): Scenario {

@@ -67,7 +67,7 @@ export default function IntroScreen({ onStart }: { onStart: () => void }) {
             Despertar en la isla →
           </button>
           <p className="text-xs text-ocean-100/60">
-            5 historias · 3 niveles de dificultad
+            8 historias · 3 niveles de dificultad
           </p>
         </div>
       )}
