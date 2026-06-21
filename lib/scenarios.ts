@@ -64,9 +64,15 @@ export const SCENARIOS: Scenario[] = [
         scene:
           "La puerta del faro está cerrada con un viejo candado de ruedas numéricas. Alguien grabó una secuencia en el marco de madera, con el último número borrado.",
         riddle:
-          "La secuencia grabada es: 2 · 4 · 8 · 16 · 32 · ? . ¿Qué número abre el candado?",
-        kind: "text",
-        answers: ["64", "sesenta y cuatro"],
+          "El marco muestra la serie 2 · 4 · 8 · 16 · 32 · ? . Gira las ruedas hasta el número que la completa.",
+        kind: "minigame",
+        answers: [],
+        minigame: {
+          type: "lock",
+          digits: 2,
+          code: "64",
+          clue: "Cada número es el doble del anterior. Marca el que sigue.",
+        },
         hints: [
           "Cada número guarda la misma relación con el anterior.",
           "No se suma una cantidad fija: se multiplica.",
@@ -106,21 +112,25 @@ export const SCENARIOS: Scenario[] = [
         id: "n5",
         title: "Rumbo a casa",
         scene:
-          "El bote tiene una vía de agua que tapas con brea y trapos. Funciona. Pero sin brújula, de noche, solo te queda guiarte por el cielo para encontrar el norte.",
+          "El bote tiene una vía de agua que tapas con brea y trapos. Funciona. El cuaderno del farero marcaba el rumbo exacto a tierra firme: 45° (Noreste). Debes alinear tu brújula improvisada con ese azimut.",
         riddle:
-          "¿Qué estrella permanece casi fija en el cielo del hemisferio norte y señala siempre el Norte verdadero?",
-        kind: "text",
-        answers: [
-          "estrella polar",
-          "la estrella polar",
-          "polar",
-          "polaris",
-          "la polar",
-        ],
+          "Gira la brújula hasta fijar el rumbo a tierra firme: 45° (Noreste).",
+        kind: "minigame",
+        answers: [],
+        minigame: {
+          type: "tune",
+          min: 0,
+          max: 360,
+          target: 45,
+          tolerance: 5,
+          step: 1,
+          unit: "°",
+          clue: "Mueve la aguja hasta los 45° y mantén la señal fijada.",
+        },
         hints: [
-          "Los navegantes la han usado durante milenios.",
-          "Se encuentra prolongando el borde de la Osa Mayor.",
-          "Comparte nombre con el punto cardinal que indica.",
+          "El Noreste está a mitad de camino entre el Norte (0°) y el Este (90°).",
+          "Busca el valor 45 en el dial.",
+          "Cuando la señal se fije en verde, confirma.",
         ],
         success:
           "Fijas la proa en la Estrella Polar y remas con todas tus fuerzas.",
@@ -161,21 +171,31 @@ export const SCENARIOS: Scenario[] = [
       },
       {
         id: "a2",
-        title: "Señales en la arena",
+        title: "Cablear la radio",
         scene:
-          "El piloto, antes de desaparecer, dejó marcas de pedernal grabadas en una placa metálica: puntos y rayas. Reconoces el patrón al instante.",
+          "La radio de emergencia está desconectada: cuatro cables sueltos cuelgan del panel. Cada uno tiene su color y debe ir a su borne correcto, o saltarán las chispas.",
         riddle:
-          "La placa dice: «· · ·   — — —   · · ·». ¿Qué palabra de auxilio internacional representa este código Morse?",
-        kind: "text",
-        answers: ["sos", "s.o.s", "s o s"],
+          "Conecta cada cable de colores con el borne que le corresponde.",
+        kind: "minigame",
+        answers: [],
+        minigame: {
+          type: "wires",
+          clue: "Pulsa un cable y luego su borne. El color te guía.",
+          pairs: [
+            { left: "Cable rojo", right: "Borne + (positivo)", color: "#ef4444" },
+            { left: "Cable verde", right: "Toma de tierra", color: "#22c55e" },
+            { left: "Cable azul", right: "Antena", color: "#3b82f6" },
+            { left: "Cable amarillo", right: "Altavoz", color: "#eab308" },
+          ],
+        },
         hints: [
-          "Tres símbolos cortos, tres largos, tres cortos.",
-          "Es la señal de socorro más famosa del mundo.",
-          "Son tres letras: S — O — S.",
+          "El rojo casi siempre es el polo positivo.",
+          "El verde suele ser la toma de tierra.",
+          "Azul → antena, amarillo → altavoz.",
         ],
         success:
-          "«SOS». Ahora sabes qué mensaje emitir. Solo falta saber dónde emitirlo.",
-        icon: "📡",
+          "La radio cobra vida con un zumbido. Ahora hay que encontrar la frecuencia correcta.",
+        icon: "🔌",
       },
       {
         id: "a3",
@@ -183,13 +203,23 @@ export const SCENARIOS: Scenario[] = [
         scene:
           "El manual de a bordo, chamuscado, explica cómo sintonizar la radio. La frecuencia de socorro aeronáutico aparece pero con un dígito ilegible: «1 2 _ . 5».",
         riddle:
-          "El manual añade una pista: «el dígito que falta es el único número primo par». ¿Cuál es la frecuencia completa? (formato 0.0)",
-        kind: "text",
-        answers: ["121.5", "121,5", "1215"],
+          "Sintoniza el dial hasta la frecuencia internacional de socorro aeronáutico: 121.5 MHz.",
+        kind: "minigame",
+        answers: [],
+        minigame: {
+          type: "tune",
+          min: 118,
+          max: 137,
+          target: 121.5,
+          tolerance: 0.3,
+          step: 0.1,
+          unit: "MHz",
+          clue: "Desliza con cuidado hasta 121.5 MHz, la frecuencia de emergencia.",
+        },
         hints: [
-          "Un número primo solo es divisible por 1 y por sí mismo.",
-          "Casi todos los pares no son primos… excepto uno.",
-          "El único primo par es el 2. Frecuencia: 12_.5 → 121.5",
+          "La frecuencia de socorro aéreo es 121 coma algo.",
+          "Acércate al principio de la banda, sobre 121.",
+          "El valor exacto es 121.5 MHz.",
         ],
         success:
           "121.5 MHz, la frecuencia internacional de emergencia. Tecleas el dial con dedos temblorosos.",
@@ -215,20 +245,31 @@ export const SCENARIOS: Scenario[] = [
       },
       {
         id: "a5",
-        title: "Emitiendo socorro",
+        title: "Transmitir el SOS",
         scene:
-          "Todo está listo: radio encendida, frecuencia correcta, batería conectada. Tomas el micrófono. Hay una última palabra clave que los pilotos repiten tres veces para declarar una emergencia con peligro de muerte.",
+          "Todo está listo: radio encendida, frecuencia correcta. La torre de rescate emite una secuencia de pulsos de confirmación que debes repetir exactamente para enganchar la señal y lanzar el MAYDAY.",
         riddle:
-          "¿Qué palabra (de origen francés) se pronuncia tres veces por radio para señalar una emergencia grave en aviación y náutica?",
-        kind: "text",
-        answers: ["mayday", "may day", "mayday mayday mayday"],
+          "Observa la secuencia de pulsos y repítela en el mismo orden.",
+        kind: "minigame",
+        answers: [],
+        minigame: {
+          type: "memory",
+          length: 4,
+          clue: "Memoriza el orden en que se iluminan los pulsos y reprodúcelo.",
+          pads: [
+            { symbol: "◉", color: "#ef4444" },
+            { symbol: "◉", color: "#22c55e" },
+            { symbol: "◉", color: "#3b82f6" },
+            { symbol: "◉", color: "#eab308" },
+          ],
+        },
         hints: [
-          "Viene del francés «m’aidez» (ayúdenme).",
-          "La has oído mil veces en las películas de aviones.",
-          "Empieza por ‘May’… y se dice tres veces.",
+          "Mira la secuencia entera antes de tocar nada.",
+          "Si fallas, puedes volver a verla.",
+          "Repite los colores en el mismo orden que se encendieron.",
         ],
         success:
-          "«MAYDAY, MAYDAY, MAYDAY», repites al micrófono.",
+          "Repites los pulsos sin un fallo. «MAYDAY, MAYDAY, MAYDAY», gritas al micrófono.",
         icon: "🆘",
       },
     ],
@@ -288,9 +329,15 @@ export const SCENARIOS: Scenario[] = [
         scene:
           "El quemador tiene un dial de seguridad con números. El manual de mimbre, mordido por la humedad, da una secuencia para abrir el paso del gas.",
         riddle:
-          "La secuencia de apertura es: 1 · 1 · 2 · 3 · 5 · 8 · ? . ¿Qué número continúa la serie?",
-        kind: "text",
-        answers: ["13", "trece"],
+          "La secuencia de apertura es 1 · 1 · 2 · 3 · 5 · 8 · ? . Marca en el dial el número que continúa la serie.",
+        kind: "minigame",
+        answers: [],
+        minigame: {
+          type: "lock",
+          digits: 2,
+          code: "13",
+          clue: "Cada número es la suma de los dos anteriores (Fibonacci).",
+        },
         hints: [
           "Cada número depende de los dos anteriores.",
           "Es la famosa sucesión de Fibonacci.",
@@ -322,15 +369,25 @@ export const SCENARIOS: Scenario[] = [
         id: "g5",
         title: "El último ascenso",
         scene:
-          "Lastre soltado, rumbo fijado, gas fluyendo, lona asegurada. Antes de prender el quemador recuerdas la regla básica de física que hará que el globo suba.",
+          "Lastre soltado, rumbo fijado, lona asegurada. Solo falta calentar el aire del interior: si lo subes demasiado poco no despegas, si te pasas, la seda peligra. El punto justo está en torno a los 95 °C.",
         riddle:
-          "Para que el globo se eleve, el aire de dentro debe estar… ¿más caliente o más frío que el aire de fuera? (responde con una palabra)",
-        kind: "text",
-        answers: ["caliente", "mas caliente", "más caliente", "calido", "cálido"],
+          "Regula el quemador hasta calentar el aire interior a unos 95 °C para despegar.",
+        kind: "minigame",
+        answers: [],
+        minigame: {
+          type: "tune",
+          min: 20,
+          max: 140,
+          target: 95,
+          tolerance: 5,
+          step: 5,
+          unit: "°C",
+          clue: "Sube la llama hasta acercarte a los 95 °C y mantén la señal estable.",
+        },
         hints: [
-          "El aire al calentarse pesa menos y tiende a subir.",
-          "Por eso el quemador lanza una llama hacia arriba.",
-          "Debe estar más… caliente.",
+          "El aire caliente pesa menos y empuja el globo hacia arriba.",
+          "Apunta a unos 95 grados, ni poco ni demasiado.",
+          "Cuando el medidor se fije en verde, confirma.",
         ],
         success:
           "Aire caliente. Abres el quemador al máximo y la seda se tensa hacia el cielo.",
@@ -375,9 +432,15 @@ export const SCENARIOS: Scenario[] = [
         scene:
           "En el casco del pecio hundido hay una escotilla con un teclado estanco. Junto a él, una placa de latón con una pista del antiguo capitán.",
         riddle:
-          "La placa dice: «La profundidad a la que dormimos, en metros». El diario del barco menciona que se hundió a ‘dos veintenas y diez metros’. ¿Qué número tecleas?",
-        kind: "text",
-        answers: ["50", "cincuenta"],
+          "La placa dice: «La profundidad a la que dormimos, en metros». El diario menciona ‘dos veintenas y diez metros’. Marca ese número en el teclado.",
+        kind: "minigame",
+        answers: [],
+        minigame: {
+          type: "lock",
+          digits: 2,
+          code: "50",
+          clue: "Una veintena son 20. Dos veintenas y diez metros…",
+        },
         hints: [
           "Una veintena son 20.",
           "‘Dos veintenas’ = 2 × 20 = 40.",
@@ -409,36 +472,57 @@ export const SCENARIOS: Scenario[] = [
         id: "b4",
         title: "Pulsos en el sónar",
         scene:
-          "El batiscafo arranca a medias: pide un código de sincronización que el sónar emite como una serie de pulsos repetidos en la pantalla.",
+          "El batiscafo pide sincronizarse con el sónar. La pantalla emite una secuencia de pulsos luminosos que debes reproducir para enganchar la señal.",
         riddle:
-          "El sónar repite el patrón: 3 · 6 · 9 · 12 · ? . ¿Qué número sincroniza el motor?",
-        kind: "text",
-        answers: ["15", "quince"],
+          "Memoriza la secuencia de pulsos del sónar y repítela.",
+        kind: "minigame",
+        answers: [],
+        minigame: {
+          type: "memory",
+          length: 4,
+          clue: "Observa el orden de los pulsos y reprodúcelo tocando los paneles.",
+          pads: [
+            { symbol: "◉", color: "#06b6d4" },
+            { symbol: "◉", color: "#10b981" },
+            { symbol: "◉", color: "#a78bfa" },
+            { symbol: "◉", color: "#f59e0b" },
+          ],
+        },
         hints: [
-          "La diferencia entre cada número es siempre la misma.",
-          "Van de 3 en 3.",
-          "12 + 3 = …",
+          "Mira la secuencia completa antes de tocar.",
+          "Puedes volver a verla si fallas.",
+          "Reproduce los pulsos en el mismo orden.",
         ],
         success:
-          "15. El sónar deja de parpadear y el batiscafo entra en modo de navegación.",
+          "El sónar deja de parpadear y el batiscafo entra en modo de navegación.",
         icon: "📈",
       },
       {
         id: "b5",
-        title: "Ascenso seguro",
+        title: "Reconectar el motor",
         scene:
-          "El batiscafo está listo, pero recuerdas por qué casi mueres: subiste demasiado deprisa. Para volver sano y salvo a la superficie debes respetar una norma de oro del buceo.",
+          "Última maniobra antes de ascender: el motor del batiscafo está desmontado y cada sistema debe volver a su sitio. Conéctalo bien o no habrá propulsión para subir.",
         riddle:
-          "Para evitar la enfermedad descompresiva al subir, el buceador debe ascender de forma… ¿rápida o lenta? (una palabra)",
-        kind: "text",
-        answers: ["lenta", "lento", "despacio", "lentamente"],
+          "Reconecta cada sistema del batiscafo con su destino correcto.",
+        kind: "minigame",
+        answers: [],
+        minigame: {
+          type: "wires",
+          clue: "Pulsa un sistema y luego su destino. El color te guía.",
+          pairs: [
+            { left: "Batería", right: "Cuadro eléctrico", color: "#84cc16" },
+            { left: "Hélice", right: "Eje del motor", color: "#f59e0b" },
+            { left: "Bomba de achique", right: "Conducto de agua", color: "#06b6d4" },
+            { left: "Sónar", right: "Pantalla de mando", color: "#a78bfa" },
+          ],
+        },
         hints: [
-          "Lo contrario de lo que hiciste por pánico.",
-          "El nitrógeno necesita tiempo para liberarse de la sangre.",
-          "Hay que subir… despacio / lento.",
+          "La batería alimenta el cuadro eléctrico.",
+          "La hélice gira con el eje del motor.",
+          "La bomba va al agua; el sónar, a su pantalla.",
         ],
         success:
-          "Lento y con calma. Programas un ascenso pausado y dejas que el batiscafo te suba sin prisas.",
+          "El motor ronronea de nuevo. Programas un ascenso lento y seguro hacia la superficie.",
         icon: "⬆️",
       },
     ],
@@ -512,39 +596,59 @@ export const SCENARIOS: Scenario[] = [
       },
       {
         id: "p4",
-        title: "El orden de los elementos",
+        title: "Elementos y runas",
         scene:
-          "Cuatro runas representan los elementos y deben pulsarse en el orden que indica el poema tallado en el dintel del arco.",
+          "Cuatro runas del arco representan los elementos, pero están desordenadas. Un grabado explica qué símbolo pertenece a cada uno. Únelos correctamente para canalizar la energía.",
         riddle:
-          "El poema dice: «Primero el que respiras, luego el que bebes, después el que te calienta y al final el que pisas». ¿Qué elemento se pulsa EN PRIMER lugar?",
-        kind: "choice",
-        options: ["Tierra", "Agua", "Fuego", "Aire"],
-        answers: ["aire", "el aire"],
+          "Conecta cada elemento con la runa que le corresponde.",
+        kind: "minigame",
+        answers: [],
+        minigame: {
+          type: "wires",
+          clue: "Pulsa un elemento y luego su runa. El color te guía.",
+          pairs: [
+            { left: "Aire", right: "Runa del viento ᚹ", color: "#93c5fd" },
+            { left: "Agua", right: "Runa de la ola ᛚ", color: "#38bdf8" },
+            { left: "Fuego", right: "Runa de la llama ᚲ", color: "#fb923c" },
+            { left: "Tierra", right: "Runa de la roca ᛒ", color: "#a3a380" },
+          ],
+        },
         hints: [
-          "Lee la primera línea: «el que respiras».",
-          "No bebes ni pisas lo que respiras.",
-          "Respiras… aire.",
+          "El aire es el viento; el agua, la ola.",
+          "El fuego es la llama; la tierra, la roca.",
+          "Fíjate en el dibujo de cada runa.",
         ],
         success:
-          "Aire, agua, fuego y tierra. Las cuatro runas se encienden en cascada y el arco vibra con fuerza renovada.",
+          "Las cuatro runas se encienden en cascada y el arco vibra con fuerza renovada.",
         icon: "🜁",
       },
       {
         id: "p5",
-        title: "La palabra que abre",
+        title: "La secuencia de activación",
         scene:
-          "Todo está alineado. En el centro del arco falta una sola runa: la palabra de cierre que aparece, repetida, en cada inscripción que has descifrado. Una palabra que significa ‘regresar a casa’.",
+          "Todo está alineado. El arco te muestra una última vez el orden en que las runas deben encenderse para abrir el portal. Memorízalo y repítelo sin un solo error: es tu billete de vuelta a casa.",
         riddle:
-          "Reúne las iniciales reveladas por el guardián: V-O-L-V-E-R. ¿Cuál es la palabra final que pronuncias para activar el portal?",
-        kind: "text",
-        answers: ["volver", "volver a casa", "regresar", "casa"],
+          "Observa el orden en que se encienden las runas y repítelo para activar el portal.",
+        kind: "minigame",
+        answers: [],
+        minigame: {
+          type: "memory",
+          length: 5,
+          clue: "Memoriza la secuencia completa de runas y reprodúcela en orden.",
+          pads: [
+            { symbol: "ᚠ", color: "#a78bfa" },
+            { symbol: "ᚢ", color: "#f472b6" },
+            { symbol: "ᛗ", color: "#22d3ee" },
+            { symbol: "ᛟ", color: "#facc15" },
+          ],
+        },
         hints: [
-          "Las iniciales ya forman la palabra completa.",
-          "Es lo único que has deseado desde que despertaste.",
-          "V-O-L-V-E-R deletrea…",
+          "Observa la secuencia entera antes de tocar ninguna runa.",
+          "Si te equivocas, el arco te la mostrará de nuevo.",
+          "Repite las runas exactamente en el orden en que brillaron.",
         ],
         success:
-          "«VOLVER», pronuncias, y la runa central prende como una estrella.",
+          "Las runas prenden una a una como estrellas y el arco se llena de luz.",
         icon: "✨",
       },
     ],

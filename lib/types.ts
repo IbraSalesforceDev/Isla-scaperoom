@@ -16,7 +16,56 @@ export interface Difficulty {
   emoji: string;
 }
 
-export type PuzzleKind = "text" | "code" | "choice";
+export type PuzzleKind = "text" | "code" | "choice" | "minigame";
+
+/** Tipos de minijuego interactivo disponibles */
+export type MinigameType = "lock" | "wires" | "memory" | "tune";
+
+export interface LockConfig {
+  type: "lock";
+  /** Número de ruedas/dígitos */
+  digits: number;
+  /** Combinación correcta, p. ej. "64" */
+  code: string;
+  /** Texto que aparece grabado como pista junto a la cerradura */
+  clue: string;
+}
+
+export interface WiresConfig {
+  type: "wires";
+  /** Pares correctos: left[i] conecta con right[i] */
+  pairs: { left: string; right: string; color: string }[];
+  clue: string;
+}
+
+export interface MemoryConfig {
+  type: "memory";
+  /** Botones disponibles (símbolo + color) */
+  pads: { symbol: string; color: string }[];
+  /** Longitud de la secuencia a memorizar */
+  length: number;
+  clue: string;
+}
+
+export interface TuneConfig {
+  type: "tune";
+  min: number;
+  max: number;
+  /** Valor objetivo */
+  target: number;
+  /** Margen aceptado alrededor del objetivo */
+  tolerance: number;
+  /** Salto del deslizador */
+  step: number;
+  unit: string;
+  clue: string;
+}
+
+export type MinigameConfig =
+  | LockConfig
+  | WiresConfig
+  | MemoryConfig
+  | TuneConfig;
 
 export interface Puzzle {
   id: string;
@@ -29,8 +78,10 @@ export interface Puzzle {
   kind: PuzzleKind;
   /** Para kind "choice": las opciones mostradas */
   options?: string[];
-  /** Respuestas válidas (se normalizan al comparar) */
+  /** Respuestas válidas (se normalizan al comparar). Vacío en minijuegos. */
   answers: string[];
+  /** Configuración del minijuego cuando kind === "minigame" */
+  minigame?: MinigameConfig;
   /** Pistas progresivas */
   hints: string[];
   /** Texto que se muestra al acertar */

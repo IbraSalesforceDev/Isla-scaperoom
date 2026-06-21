@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import type { Difficulty, Puzzle, Scenario } from "@/lib/types";
 import { checkAnswer, formatTime } from "@/lib/game";
+import Minigame from "@/components/minigames/Minigame";
 
 export default function PuzzleScreen({
   scenario,
@@ -120,7 +121,12 @@ export default function PuzzleScreen({
 
         {!solved ? (
           <>
-            {puzzle.kind === "choice" && puzzle.options ? (
+            {puzzle.kind === "minigame" && puzzle.minigame ? (
+              <Minigame
+                config={puzzle.minigame}
+                onSolve={() => setSolved(true)}
+              />
+            ) : puzzle.kind === "choice" && puzzle.options ? (
               <div className="mt-6 grid gap-3 sm:grid-cols-2">
                 {puzzle.options.map((opt) => (
                   <button
