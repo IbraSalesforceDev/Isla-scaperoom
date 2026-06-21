@@ -1,0 +1,115 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-display: "Georgia", "Times New Roman", serif;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  @apply text-white antialiased;
+  background: #0b2447;
+  overflow-x: hidden;
+}
+
+/* Fondo de océano animado reutilizable */
+.ocean-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background:
+    radial-gradient(120% 80% at 50% -10%, rgba(120, 190, 255, 0.45), transparent 60%),
+    linear-gradient(180deg, #0a2a5e 0%, #0e3a73 40%, #0c5a8f 70%, #0a7ea4 100%);
+}
+
+/* Sol/luz superior */
+.ocean-glow {
+  position: fixed;
+  top: -20vh;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90vw;
+  height: 60vh;
+  background: radial-gradient(closest-side, rgba(255, 240, 200, 0.35), transparent 70%);
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Olas en la parte baja */
+.waves {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 200%;
+  height: 22vh;
+  z-index: -1;
+  background-repeat: repeat-x;
+  background-size: 50% 100%;
+  opacity: 0.5;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 200' preserveAspectRatio='none'%3E%3Cpath d='M0,100 C150,160 350,40 600,100 C850,160 1050,40 1200,100 L1200,200 L0,200 Z' fill='%23ffffff' fill-opacity='0.25'/%3E%3C/svg%3E");
+}
+.waves-2 {
+  height: 16vh;
+  opacity: 0.35;
+  animation-duration: 18s !important;
+}
+
+/* Tarjeta glassmorphism */
+.glass {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 20px 60px rgba(3, 22, 50, 0.45);
+}
+
+.glass-dark {
+  background: rgba(7, 22, 45, 0.55);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+/* Burbuja estilo WhatsApp */
+.chat-bubble {
+  background: #ffffff;
+  color: #0b1a2b;
+  border-radius: 18px;
+  border-top-left-radius: 4px;
+  padding: 14px 18px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+  max-width: 34rem;
+}
+
+/* Botón con brillo */
+.btn-shine {
+  position: relative;
+  overflow: hidden;
+}
+.btn-shine::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    110deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.35) 50%,
+    transparent 70%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 3s linear infinite;
+}
+
+/* Scrollbar discreta */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+}
